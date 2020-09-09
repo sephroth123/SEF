@@ -1,4 +1,4 @@
-package attribute;
+package entity;
 
 public class Framwork {
 
