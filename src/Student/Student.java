@@ -1,10 +1,14 @@
-package attribute;
+package Student;
 
-import java.util.*;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
-public class Student {
+import attribute.InputDuplicatedExcepiton;
+import attribute.InputNumberMixmatchException;
+import attribute.Role;
+import attribute.StudentPreference;
 
+public class Student {
 	private String sid;
 	private String userName;
 	private String password;
