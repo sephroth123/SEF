@@ -1,2 +1,3 @@
-module Lotus {
-}
+//module Lotus {
+	//requires rt;
+//}

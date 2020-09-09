@@ -4,7 +4,7 @@ public class Role {
 
 	private String rid;
 	private String rName;
-	private String framwork;
+	private String framework;
 
 	public String getRid() {
 		return rid;
@@ -22,11 +22,11 @@ public class Role {
 		this.rName = rName;
 	}
 
-	public String getFramwork() {
-		return framwork;
+	public String getFramework() {
+		return framework;
 	}
 
-	public void setFramwork(String framwork) {
-		this.framwork = framwork;
+	public void setFramework(String framwork) {
+		this.framework = framwork;
 	}
 }
