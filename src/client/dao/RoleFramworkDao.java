@@ -12,8 +12,8 @@ public class RoleFramworkDao {
 	public void save(RoleFramework rf) {
 
 		try {
-			String sql = "INSERT INTO RoleFramework(RID,FID,RFID) VALUES('" + rf.getRID() + "','" + rf.getFID() + "','"
-					+ rf.getRFID() + "')";
+			String sql = "INSERT INTO RoleFramework(RID,FID,RFID) VALUES('" + rf.getR_id() + "','" + rf.getF_id()
+					+ "','" + rf.getId() + "')";
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			PreparedStatement ps = conn.prepareStatement(sql);
 

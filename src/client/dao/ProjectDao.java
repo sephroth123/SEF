@@ -12,7 +12,7 @@ public class ProjectDao {
 	public void save(Project p) {
 
 		try {
-			String sql = "INSERT INTO Project(pid,cid,description) VALUES('" + p.getPid() + "','" + p.getCid() + "','"
+			String sql = "INSERT INTO Project(pid,cid,description) VALUES('" + p.getPid() + "','" + p.getC_id() + "','"
 					+ p.getDescription() + "')";
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class ProjectDao {
 		Project p = new Project();
 
 		p.setPid("P8");
-		p.setCid("C3");
+		p.setC_id("C3");
 		p.setDescription("xxxx");
 
 		ProjectDao dao = new ProjectDao();

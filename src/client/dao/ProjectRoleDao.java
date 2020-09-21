@@ -12,8 +12,8 @@ public class ProjectRoleDao {
 	public void save(ProjectRole pr) {
 
 		try {
-			String sql = "INSERT INTO ProjectRole(PRID,PID,RFID) VALUES('" + pr.getPRID() + "','" + pr.getPID() + "','"
-					+ pr.getRFID() + "')";
+			String sql = "INSERT INTO ProjectRole(PRID,PID,RFID) VALUES('" + pr.getId() + "','" + pr.getP_id() + "','"
+					+ pr.getR_id() + "')";
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			PreparedStatement ps = conn.prepareStatement(sql);
 

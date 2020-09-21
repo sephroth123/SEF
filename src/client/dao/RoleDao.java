@@ -12,7 +12,7 @@ public class RoleDao {
 	public void save(Role r) {
 
 		try {
-			String sql = "INSERT INTO Role(RID,rName) VALUES('" + r.getRID() + "','" + r.getrName() + "')";
+			String sql = "INSERT INTO Role(RID,rName) VALUES('" + r.getRid() + "','" + r.getrName() + "')";
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			PreparedStatement ps = conn.prepareStatement(sql);
 

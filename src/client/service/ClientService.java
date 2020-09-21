@@ -9,7 +9,7 @@ import client.exception.IdFormatIncorrectException;
 import client.exception.NullInputException;
 import client.utils.IDcreator;
 import client.utils.Utils;
-import entity.Framework;
+import entity.Framwork;
 import entity.Project;
 import entity.ProjectRole;
 import entity.Role;
@@ -76,7 +76,7 @@ public class ClientService {
 		Project p = new Project();
 		p.setPid(pId);
 		p.setDescription(description);
-		p.setCid(cId);
+		p.setC_id(cId);
 		projectDao.save(p);
 
 		return pId;
@@ -121,12 +121,12 @@ public class ClientService {
 
 		}
 
-		Framework f = new Framework();
+		Framwork f = new Framwork();
 
 		String framworkId = IDcreator.frameworkId();
 
 		f.setFid(framworkId);
-		f.setfName(framworkName);
+		f.setName(framworkName);
 
 		framworkDao.save(f);
 

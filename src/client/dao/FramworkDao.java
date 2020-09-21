@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import entity.Framework;
+import entity.Framwork;
 
 public class FramworkDao {
 
-	public void save(Framework f) {
+	public void save(Framwork f) {
 
 		try {
-			String sql = "INSERT INTO framework(fid,fName) VALUES('" + f.getFid() + "','" + f.getfName() + "')";
+			String sql = "INSERT INTO framework(fid,fName) VALUES('" + f.getFid() + "','" + f.getName() + "')";
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			PreparedStatement ps = conn.prepareStatement(sql);
 
@@ -33,9 +33,9 @@ public class FramworkDao {
 
 	public static void main(String[] args) {
 
-		Framework f = new Framework();
+		Framwork f = new Framwork();
 		f.setFid("F6");
-		f.setfName("xxxxx");
+		f.setName("xxxxx");
 		FramworkDao dao = new FramworkDao();
 		dao.save(f);
 
