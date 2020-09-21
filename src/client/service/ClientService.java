@@ -9,13 +9,19 @@ import client.exception.IdFormatIncorrectException;
 import client.exception.NullInputException;
 import client.utils.IDcreator;
 import client.utils.Utils;
-import entity.Framwork;
+import entity.Framework;
 import entity.Project;
 import entity.ProjectRole;
 import entity.Role;
 import entity.RoleFramework;
 
 public class ClientService {
+
+	ProjectDao projectDao = new ProjectDao();
+	ProjectRoleDao projectRoleDao = new ProjectRoleDao();
+	RoleFramworkDao roleFramworkDao = new RoleFramworkDao();
+	FramworkDao framworkDao = new FramworkDao();
+	RoleDao roleDao = new RoleDao();
 
 	/**
 	 * build new project with the input from the user.
@@ -70,10 +76,8 @@ public class ClientService {
 		Project p = new Project();
 		p.setPid(pId);
 		p.setDescription(description);
-		p.setC_id(cId);
-
-		ProjectDao dao = new ProjectDao();
-		dao.save(p);
+		p.setCid(cId);
+		projectDao.save(p);
 
 		return pId;
 
@@ -95,12 +99,8 @@ public class ClientService {
 		}
 
 		String rId = IDcreator.roleId();
-		Role r = new Role();
-		r.setRid(rId);
-		r.setrName(rName);
-
-		RoleDao dao = new RoleDao();
-		dao.save(r);
+		Role r = new Role(rId, rName);
+		roleDao.save(r);
 
 		return rId;
 
@@ -121,16 +121,14 @@ public class ClientService {
 
 		}
 
-		Framwork f = new Framwork();
+		Framework f = new Framework();
 
 		String framworkId = IDcreator.frameworkId();
 
-		FramworkDao fmDao = new FramworkDao();
-
 		f.setFid(framworkId);
-		f.setName(framworkName);
+		f.setfName(framworkName);
 
-		fmDao.save(f);
+		framworkDao.save(f);
 
 		return framworkId;
 
@@ -153,13 +151,8 @@ public class ClientService {
 			throw new IdFormatIncorrectException("roleId");
 		}
 
-		ProjectRole pr = new ProjectRole();
-		pr.setId(IDcreator.projectRoleId());
-		pr.setP_id(projectId);
-		pr.setR_id(roleId);
-
-		ProjectRoleDao dao = new ProjectRoleDao();
-		dao.save(pr);
+		ProjectRole pr = new ProjectRole(IDcreator.projectRoleId(), projectId, roleId);
+		projectRoleDao.save(pr);
 
 	}
 
@@ -180,15 +173,9 @@ public class ClientService {
 			throw new IdFormatIncorrectException("framwork");
 		}
 
-		RoleFramework rf = new RoleFramework();
+		RoleFramework rf = new RoleFramework(roleId, framworkId, IDcreator.roleFrameworkId());
 
-		rf.setF_id(framworkId);
-		rf.setR_id(roleId);
-		rf.setF_id(IDcreator.roleFrameworkId());
-
-		RoleFramworkDao dao = new RoleFramworkDao();
-
-		dao.save(rf);
+		roleFramworkDao.save(rf);
 
 	}
 
