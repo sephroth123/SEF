@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import Student.service.InputDuplicatedExcepiton;
 import Student.service.InputNumberMixmatchException;
+import Student.service.StudentService;
 import entity.Student;
 
 public class StudentTest {
@@ -23,7 +24,7 @@ public class StudentTest {
 
 	@Test
 	public void testInputDis_stu() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputDis_stu(sid);
 		assertEquals("The disliked students of " + sid +" s2s3s4", output);
@@ -31,7 +32,7 @@ public class StudentTest {
 
 	@Test(expected = InputNumberMixmatchException.class)
 	public void testInputDis_stu2() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputDis_stu(sid);
 	}
@@ -39,14 +40,14 @@ public class StudentTest {
 	
 	@Test(expected = InputDuplicatedExcepiton.class)
 	public void testInputDis_stu3() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputDis_stu(sid);
 	}
 	
 	@Test
 	public void testInputRole() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputRole(sid);
 		
@@ -55,7 +56,7 @@ public class StudentTest {
 	
 	@Test(expected = InputNumberMixmatchException.class)
 	public void testInputRole2() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputRole(sid);
 		
@@ -63,7 +64,7 @@ public class StudentTest {
 	
 	@Test(expected = InputDuplicatedExcepiton.class)
 	public void testInputRole3() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputRole(sid);
 		
@@ -71,7 +72,7 @@ public class StudentTest {
 	
 	@Test
 	public void testInputPre_client() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputPre_client(sid);
 		
@@ -80,14 +81,14 @@ public class StudentTest {
 
 	@Test(expected = InputNumberMixmatchException.class)
 	public void testInputPre_client2() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputPre_client(sid);
 	}
 
 	@Test(expected = InputDuplicatedExcepiton.class)
 	public void testInputPre_client3() throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		Student stu = new Student();
+		StudentService stu = new StudentService();
 		String sid = "s1";
 		String output = stu.inputPre_client(sid);
 		
