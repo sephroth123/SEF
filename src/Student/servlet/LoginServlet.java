@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 
 		request.setAttribute("error", "wrong password!");
 
-		request.getRequestDispatcher("/result.jsp").forward(request, response);
+		//request.getRequestDispatcher("/result.jsp").forward(request, response);
 
 	}
 

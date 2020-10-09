@@ -8,9 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Student.service.InputDuplicatedExcepiton;
+import Student.service.InputNumberMixmatchException;
 import Student.service.StudentService;
+import dao.StudentPreferenceDao;
 
-@WebServlet("/studentinfo")
+@WebServlet(name = "myStudentServlet", urlPatterns = {"/StudentServlet"} )
 public class StudentServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -28,10 +31,26 @@ public class StudentServlet extends HttpServlet {
 		String rName2 = request.getParameter("rName2");
 		String framework2 = request.getParameter("framework2");
 
-		service.buildProject(sID,dislike,preference,rName1,framework1,rName2,framework2);
+		try {
+			service.inputDis_stu(sID, dislike);
+			service.inputPre_client(sID, preference);
+			service.inputRole(sID, rName1, framework1);
+			service.inputRole(sID, rName2, framework2);
+			
+		} catch (InputNumberMixmatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InputDuplicatedExcepiton e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		//request.getRequestDispatcher("/studentinfo.jsp").forward(request, response);
 
-		request.getRequestDispatcher("/studentinfo.jsp").forward(request, response);
-
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 }
