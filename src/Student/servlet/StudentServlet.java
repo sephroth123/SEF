@@ -34,6 +34,7 @@ public class StudentServlet extends HttpServlet {
 		try {
 			service.inputDis_stu(sID, dislike);
 			service.inputPre_client(sID, preference);
+			service.inputPreference();
 			service.inputRole(sID, rName1, framework1);
 			service.inputRole(sID, rName2, framework2);
 			
