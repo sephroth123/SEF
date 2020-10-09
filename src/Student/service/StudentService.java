@@ -3,11 +3,17 @@ package Student.service;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import dao.FrameworkDao;
+import dao.RoleDao;
+import dao.RoleFramworkDao;
 import dao.StudentDao;
 import dao.StudentPreferenceDao;
+import dao.StudentRoleDao;
+import entity.Framework;
 import entity.Role;
 import entity.Student;
 import entity.StudentPreference;
+import entity.StudentRole;
 
 public class StudentService {
 	StudentPreference stu_pre;
@@ -75,23 +81,16 @@ public class StudentService {
 	
 	public void inputRole(String sid, String r, String f) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
 		
-		Role role1 = new Role();
-	
-		
-		
-		        String rolename1 = r;
-		        String framework1 = f;
-		   
-        
-		        role1.setrName(rolename1);
-		        role1.setFramework(framework1);
-		
-		        
-		        
-            
-	        
-		
-	
+		        RoleDao rd = new RoleDao();
+				FrameworkDao fwd = new FrameworkDao();
+				RoleFramworkDao rfwd = new RoleFramworkDao();
+				StudentRoleDao srd = new StudentRoleDao();
+				
+				String rid = rd.input(r);
+				String fid = fwd.input(f);
+				String rfid = rfwd.input(rid, fid);
+				srd.input(sid, rfid);
+
 	}
 
 	
@@ -100,7 +99,7 @@ public class StudentService {
 		spd.input(stu_pre);
 	}
 	
-	
+
 	public Integer getStudentNumber() {
 		StudentDao sd = new StudentDao();
 		int stuNumber = sd.output().size();
