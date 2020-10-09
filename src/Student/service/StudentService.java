@@ -3,26 +3,21 @@ package Student.service;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import dao.StudentDao;
+import dao.StudentPreferenceDao;
 import entity.Role;
 import entity.Student;
 import entity.StudentPreference;
 
 public class StudentService {
-	
-    
-	Scanner scan = new Scanner(System.in);
-
+	StudentPreference stu_pre;
 	//get datas from the database
 	
-	public String inputDis_stu(String Sid) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		
-		StudentPreference stu_pre = new StudentPreference();
+	public void inputDis_stu(String Sid, String s) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
 		
 		boolean flag = true;
 		while(flag) {
-			
-		    System.out.println("Enter The ID of 3 students you don't want to work with, seperate by space");
-		    String s = scan.nextLine();
+		
 		    String [] str = s.split(" ");
 	        
 		    if(str.length != 3) {
@@ -44,21 +39,16 @@ public class StudentService {
 	    	    
 	        }
 		}	
-		String out = "The disliked students of " + Sid + " " +stu_pre.getDisSid1() + stu_pre.getDisSid2() + stu_pre.getDisSid3();
-		System.out.println(out);
-		return out;
+	
 	}
 	
 	
-	public String inputPre_client(String Sid) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
-		
-		StudentPreference stu_pre = new StudentPreference();
+	public void inputPre_client(String Sid, String p) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
 		
 		boolean flag = true;
 		while(flag) {
 			
-		    System.out.println("Enter four id of clients you preferred in the oreder preference,seperate by space. ");
-		    String p = scan.nextLine();
+		    
 		    String [] client = p.split(" ");
 		
 		    if(client.length != 4) {
@@ -79,56 +69,41 @@ public class StudentService {
 		        flag = false;
            }
 		}
-		String out = "The clients preferred of " + Sid + " : " + stu_pre.getP1() + stu_pre.getP2() + stu_pre.getP3() + stu_pre.getP4();
-		System.out.println(out);
-		return out;
 	
 	}
 	
 	
-	public String inputRole(String sid) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
+	public void inputRole(String sid, String r, String f) throws InputNumberMixmatchException, InputDuplicatedExcepiton {
 		
 		Role role1 = new Role();
-		Role role2 = new Role();
+	
 		
-		boolean flag;
-		while(flag = true) {
-		    System.out.println("Enter 2 role you wanna take along with their framework, like analyst Mysql programmer java");
-		    String r = scan.nextLine();
-		    String [] role = r.split(" ");
 		
-
-	        if(role.length != 4) {
-	            throw new InputNumberMixmatchException("Insert number error, please complete your information.");
-            }
-            else if(Stream.of(role).distinct().count() < role.length)
-	            throw new InputDuplicatedExcepiton("Insert duplicated!");
-            else {
-		        String rolename1 = role[0];
-		        String framework1 = role[1];
-		        String rolename2 = role[2];
-		        String framework2 = role[3];
+		        String rolename1 = r;
+		        String framework1 = f;
+		   
         
 		        role1.setrName(rolename1);
 		        role1.setFramework(framework1);
 		
-		        role2.setrName(rolename2);
-		        role2.setFramework(framework2);
-		        flag = false;
-            }
-		}
-		String out = "The role preferred of " + sid + " : " + role1.getrName() + role1.getFramework() + role2.getrName()  + role2.getFramework();
-		System.out.println(out);
-		return out;
+		        
+		        
+            
+	        
+		
+	
+	}
+
+	
+	public void inputPreference() {
+		StudentPreferenceDao spd = new StudentPreferenceDao();
+		spd.input(stu_pre);
 	}
 	
 	
-
-
-
-	public void buildProject(String sID, String dislike, String preference, String rName1, String framework1, String rName2, String framework2) {
-		// TODO Auto-generated method stub
-		Student stu = new Student();
-		
+	public Integer getStudentNumber() {
+		StudentDao sd = new StudentDao();
+		int stuNumber = sd.output().size();
+		return stuNumber;
 	}
 }
