@@ -7,9 +7,9 @@ import client.dao.RoleDao;
 import client.dao.RoleFramworkDao;
 import client.exception.IdFormatIncorrectException;
 import client.exception.NullInputException;
-import client.utils.IDcreator;
+import client.utils.IDcreatorService;
 import client.utils.Utils;
-import entity.Framwork;
+import entity.Framework;
 import entity.Project;
 import entity.ProjectRole;
 import entity.Role;
@@ -35,15 +35,14 @@ public class ClientService {
 	 * @throws IdFormatIncorrectException
 	 * 
 	 */
-	public void buildProject(String description, String cId, String rName, String framworkName)
+	public void publishProject(String description, String cId, String rName, String framworkName)
 			throws NullInputException, IdFormatIncorrectException {
 
 		String projectId = addProject(description, cId);
 		String roleId = addRole(rName);
 		String framworkId = addFramwork(framworkName);
-
-		addProjectRole(projectId, roleId);
-		addRoleFramwork(roleId, framworkId);
+		String rfId = addRoleFramwork(roleId, framworkId);
+		addProjectRole(projectId, rfId);
 
 	}
 
@@ -68,11 +67,11 @@ public class ClientService {
 
 		}
 
-		if (!Utils.beginWith(cId, "c")) {
-			throw new IdFormatIncorrectException("client");
-		}
+//		if (!Utils.beginWith(cId, "c")) {
+//			throw new IdFormatIncorrectException("client");
+//		}
 
-		String pId = IDcreator.projectId();
+		String pId = IDcreatorService.projectId();
 		Project p = new Project();
 		p.setPid(pId);
 		p.setDescription(description);
@@ -98,7 +97,7 @@ public class ClientService {
 
 		}
 
-		String rId = IDcreator.roleId();
+		String rId = IDcreatorService.roleId();
 		Role r = new Role(rId, rName);
 		roleDao.save(r);
 
@@ -121,9 +120,9 @@ public class ClientService {
 
 		}
 
-		Framwork f = new Framwork();
+		Framework f = new Framework();
 
-		String framworkId = IDcreator.frameworkId();
+		String framworkId = IDcreatorService.frameworkId();
 
 		f.setFid(framworkId);
 		f.setName(framworkName);
@@ -141,17 +140,17 @@ public class ClientService {
 	 * @param roleId;
 	 * @throws IdFormatIncorrectException
 	 */
-	public void addProjectRole(String projectId, String roleId) throws IdFormatIncorrectException {
+	public void addProjectRole(String projectId, String rfId) throws IdFormatIncorrectException {
 
-		if (!Utils.beginWith(projectId, "p")) {
-			throw new IdFormatIncorrectException("project");
-		}
+//		if (!Utils.beginWith(projectId, "p")) {
+//			throw new IdFormatIncorrectException("project");
+//		}
+//
+//		if (!Utils.beginWith(roleId, "r")) {
+//			throw new IdFormatIncorrectException("roleId");
+//		}
 
-		if (!Utils.beginWith(roleId, "r")) {
-			throw new IdFormatIncorrectException("roleId");
-		}
-
-		ProjectRole pr = new ProjectRole(IDcreator.projectRoleId(), projectId, roleId);
+		ProjectRole pr = new ProjectRole(IDcreatorService.projectRoleId(), projectId, rfId);
 		projectRoleDao.save(pr);
 
 	}
@@ -163,19 +162,23 @@ public class ClientService {
 	 * @param roleId;
 	 * @throws IdFormatIncorrectException
 	 */
-	public void addRoleFramwork(String roleId, String framworkId) throws IdFormatIncorrectException {
+	public String addRoleFramwork(String roleId, String framworkId) throws IdFormatIncorrectException {
 
-		if (!Utils.beginWith(roleId, "r")) {
-			throw new IdFormatIncorrectException("roleId");
-		}
+//		if (!Utils.beginWith(roleId, "r")) {
+//			throw new IdFormatIncorrectException("roleId");
+//		}
+//
+//		if (!Utils.beginWith(framworkId, "f")) {
+//			throw new IdFormatIncorrectException("framwork");
+//		}
 
-		if (!Utils.beginWith(framworkId, "f")) {
-			throw new IdFormatIncorrectException("framwork");
-		}
+		String rfId = IDcreatorService.roleFrameworkId();
 
-		RoleFramework rf = new RoleFramework(roleId, framworkId, IDcreator.roleFrameworkId());
+		RoleFramework rf = new RoleFramework(rfId, roleId, framworkId);
 
 		roleFramworkDao.save(rf);
+
+		return rfId;
 
 	}
 

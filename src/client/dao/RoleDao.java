@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import configration.DBConfig;
 import entity.Role;
 
 public class RoleDao {

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import configration.DBConfig;
 import entity.ProjectRole;
 
 public class ProjectRoleDao {
@@ -13,7 +14,7 @@ public class ProjectRoleDao {
 
 		try {
 			String sql = "INSERT INTO ProjectRole(PRID,PID,RFID) VALUES('" + pr.getId() + "','" + pr.getP_id() + "','"
-					+ pr.getR_id() + "')";
+					+ pr.getRf_id() + "')";
 			Connection conn = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
 			PreparedStatement ps = conn.prepareStatement(sql);
 

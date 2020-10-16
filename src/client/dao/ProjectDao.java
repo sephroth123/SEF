@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import configration.DBConfig;
 import entity.Project;
 
 public class ProjectDao {
@@ -36,7 +37,7 @@ public class ProjectDao {
 
 		Project p = new Project();
 
-		p.setPid("P8");
+		p.setPid("P9");
 		p.setC_id("C3");
 		p.setDescription("xxxx");
 

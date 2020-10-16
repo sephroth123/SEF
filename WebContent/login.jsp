@@ -45,11 +45,18 @@
 				<tr>
 					<td colspan="2">
 						<h1>Student Project Distribution System</h1>
-
 					</td>
 				</tr>
 				<tr>
-					<td align="right">student number:</td>
+					<td align="right">user type:</td>
+					<td><select name="userType">
+							<option value="1">Client</option>
+							<option value="2">Student</option>
+							<option value="3">Project Manager</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td align="right">account:</td>
 					<td><input type="text" name="username" /></td>
 				</tr>
 				<tr>
@@ -65,7 +72,7 @@
 					<td colspan="2"><img
 						src="https://mytestdbgx.s3.amazonaws.com/download.jpeg" /></td>
 				</tr>
-				
+
 			</table>
 
 

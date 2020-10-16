@@ -31,16 +31,22 @@ public class LoginServlet extends HttpServlet {
 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String userType = request.getParameter("userType");
 
-//		if (username.equals("123")) {
-//			if (password.equals("123")) {
-//
-//				return;
-//			}
-//			return;
-//		}
-		request.setAttribute("error", "wrong password!");
-		request.getRequestDispatcher("/presentation.jsp").forward(request, response);
+		switch (userType) {
+		case "1":
+			request.setAttribute("error", "");
+			request.getSession().setAttribute("userId", "c1");// TODO
+			request.getRequestDispatcher("/presentation.jsp").forward(request, response);
+			break;
+		case "2":
+
+			break;
+		case "3":
+
+			break;
+
+		}
 
 	}
 }

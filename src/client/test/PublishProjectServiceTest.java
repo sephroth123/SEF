@@ -1,7 +1,5 @@
 package client.test;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,7 +25,14 @@ public class PublishProjectServiceTest {
 		String description = "xxxx";
 		service.addProject(description, cid);
 
-		assertEquals("", "");
+	}
+
+	@Test
+	public void testAddProject0() throws NullInputException, IdFormatIncorrectException {
+
+		String cid = "c02";
+		String description = "xxxx";
+		service.addProject(description, cid);
 
 	}
 
@@ -66,6 +71,14 @@ public class PublishProjectServiceTest {
 
 	}
 
+	@Test
+	public void testAddRole0() throws NullInputException {
+
+		String rName = "yyy";
+		service.addRole(rName);
+
+	}
+
 	@Test(expected = NullInputException.class)
 	public void testAddRole1() throws NullInputException {
 
@@ -82,6 +95,14 @@ public class PublishProjectServiceTest {
 
 	}
 
+	@Test
+	public void testAddFramwork0() throws NullInputException {
+
+		String framworkName = "yyyy";
+		service.addFramwork(framworkName);
+
+	}
+
 	@Test(expected = NullInputException.class)
 	public void testAddFramwork1() throws NullInputException {
 		String framworkName = "";
@@ -94,6 +115,17 @@ public class PublishProjectServiceTest {
 
 		String projectId = "p01";
 		String roleId = "r01";
+		service.addProjectRole(projectId, roleId);
+		
+		//connection ...
+		
+	}
+
+	@Test
+	public void testAddProjectRole0() throws IdFormatIncorrectException {
+
+		String projectId = "p01";
+		String roleId = "r02";
 		service.addProjectRole(projectId, roleId);
 	}
 
@@ -118,6 +150,14 @@ public class PublishProjectServiceTest {
 
 		String roleId = "r01";
 		String framworkId = "f01";
+		service.addRoleFramwork(roleId, framworkId);
+	}
+
+	@Test
+	public void testaddRoleFramwork0() throws IdFormatIncorrectException {
+
+		String roleId = "r01";
+		String framworkId = "f02";
 		service.addRoleFramwork(roleId, framworkId);
 	}
 
