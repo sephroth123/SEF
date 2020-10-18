@@ -1,10 +1,14 @@
 package team.service;
 
+import common.configration.DBConfig;
 import entity.Parameter;
 import entity.Student;
 import entity.Team;
 import team.dao.ExchangeDao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +28,27 @@ public class ExchangeService {
         String sql ="select * from student";
         studentList=exchangeDao.findStudentBySql(sql);
         return studentList;
+
+    }
+
+
+
+    public void updateTeam(Team newItem) throws SQLException {
+        Team team = (Team) newItem;
+        try {
+            String sql3 = "update team set SID1=?,SID2=?,SID3=?,SID4=? where PID=?;";
+            Connection connection = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
+            PreparedStatement ps2 = connection.prepareStatement(sql3);
+            ps2.setString(1, team.getS_id1());
+            ps2.setString(2, team.getS_id2());
+            ps2.setString(3, team.getS_id3());
+            ps2.setString(4, team.getS_id4());
+            ps2.setString(5, team.getP_id());
+            ps2.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("The operation failure");
+            e.printStackTrace();
+        }
     }
 
 
@@ -45,6 +70,7 @@ public class ExchangeService {
                 for (int i = 0; i < findTeam().size(); i++) {
                     Team team = (Team) findTeam().get(i);
                     ArrayList<String> arrayList = new ArrayList<>();
+                    arrayList.add(team.getP_id());
                     arrayList.add(team.getS_id1());
                     arrayList.add(team.getS_id2());
                     arrayList.add(team.getS_id3());
