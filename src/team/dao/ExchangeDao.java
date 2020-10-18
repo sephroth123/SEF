@@ -52,12 +52,5 @@ public class ExchangeDao {
 
 
 
-	//update public method
-	public void updateTeamBysql(String sql) throws SQLException{
-		Connection connection = DriverManager.getConnection(DBConfig.DB_URL, DBConfig.DB_USERNAME, DBConfig.DB_PASSWORD);
-		Statement statement=connection.createStatement();
-		statement.execute(sql);
-		connection.close();
-		statement.close();
-	}
+
 }
