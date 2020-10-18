@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<description>This is the description of my J2EE component</description>
+		<display-name>This is the display name of my J2EE component</display-name>
+		<!-- 定义servlet的处理器名称和处理器所在路径。定义的名称必须和下面的映射器写的名称一致 -->
+		<servlet-name>myloginServlet</servlet-name>
+		<servlet-class>common.LoginServlet</servlet-class>
+	</servlet>
+	<!-- 定义映射器，拦截URL请求，映射到定义的控制器loginServlet中，去找到对应的处理方法 -->
+	<servlet-mapping>
+		<servlet-name>myloginServlet</servlet-name>
+		<!-- servlet 的url-pattern规则 -->
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
+</web-app>
